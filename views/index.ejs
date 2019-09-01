@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit 2 Assessment</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>To Do List</h1>
+    <% if(todos.length < 1) { %>
+      <h3>There are no To Dos yet!</h3>
+    <% } else { %>
+      <ul>
+        <% todos.forEach(function(t,idx) { %>
+          <li>
+            <%= t.todo %>
+            -
+            <%= t.done ? 'done' : 'not done' %>
+
+            <form action="/<%= idx %>?_method=DELETE"
+            class="delete-form" method="POST">
+            <button type="submit">DELETE</button>
+         </form>
+
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
+    <hr>
+    <form action="/" method="POST">
+      <input type="text" required name="todo">
+      <button type="submit">Add To Do</button>
+    </form>
+  </body>
+</html>
